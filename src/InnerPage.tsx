@@ -6,15 +6,12 @@ import Web3 from "web3";
 export const InnerPage: React.FunctionComponent<RouteComponentProps> = () => {
   const [hasWeb3, setHasWeb3] = React.useState<boolean | null>(null);
   React.useEffect(() => {
-    window.addEventListener("message", message => {
-      console.log("iframe message", message);
-    });
     if ((window as any).ethereum) {
       setHasWeb3(true);
     } else {
       setHasWeb3(false);
     }
-  }, []);
+  }, [hasWeb3]);
 
   async function clicked() {
     await (window as any).ethereum.enable();
